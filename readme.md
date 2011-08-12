@@ -35,7 +35,7 @@ are writable.
 * Removed references to Google's CDN (Modernizr + jQuery)
 
 
-## Git-CMS as repository-based wiki (Example: Git)
+## Gir-CMS as repository-based wiki (Example: Git)
 
 Gir-CMS works great as repository-based wiki. 
 
@@ -45,7 +45,7 @@ You need a repository for all text-files on the same server as your Gir-CMS inst
 
 If you already have this repository the setup is straight forward:
 
-Add a post-recieve git-hook to the repository on the server `/path/to/repository/.git/hooks/post-receive` with the following content:
+Add a post-receive git-hook to the repository on the server `/path/to/repository/.git/hooks/post-receive` with the following content:
 
 <pre>
 #!/bin/sh  
