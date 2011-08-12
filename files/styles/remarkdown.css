@@ -1,0 +1,309 @@
+/* ============================================================
+   ReMarkdown, a stylesheet displaying HTML text as if it were
+   plain Markdown text. — By Florent Verschelde (fvsch.com).
+   Documentation: http://covertprestige.info/css/remarkdown/
+   License: http://covertprestige.info/css/remarkdown/COPYING
+            This file is published under the Do What The Fuck
+            You Want To Public License (WTFPL), Version 2.
+   ============================================================ */
+
+/* Text */
+	a {
+		text-decoration: none;
+		color: #B93530; 
+	}
+	a:visited { color: #A6706C; }
+	a:hover, 
+	a:focus { color: #FF4942; }
+	a:active { color: #E31B18; }
+	code { color: #753062; }
+	abbr { border:none; }
+
+
+/* --- PAGE LAYOUT - OPTIONAL --- */
+	@media screen {
+		html { font-size: 13px; }
+		body {
+			max-width: 45em; margin: 0; padding: 5.6em 2.8em 5.6em 8.4em;
+			font-size: 100%; color: #222; background: white;
+		}
+		#content { 
+			margin: 2.8em 0; 
+			min-height: 28em;
+		}
+		span.date { 
+			color: #888; 
+			margin-left: 2em;
+			margin-left: 3ch;
+		}
+		footer {
+			margin-top: 3em;
+			font-size: .8em;
+			text-align: center;
+			color: #999999;
+		}
+		
+	}
+	@media screen and (max-width:40em) {
+		body { max-width: none; padding: 2em; }
+	}
+	@media print {
+		body { font-size: 10pt; }
+		ul#nav,
+		ul#footer { display: none; }
+	}
+
+
+/* --- COMMON TEXT STYLES --- */
+
+	body {
+		 font-family: Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
+		 line-height: 1.4;
+	}
+
+/* --- TITLES --- */
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 1.4em 0;
+		font-weight: normal;
+		font-size: 100%;
+	}
+	h1,
+	h2 {
+		  display: inline-block;
+		  position: relative;
+		  overflow: hidden;
+		  vertical-align: top;
+		  padding-bottom: 1.4em;
+	}
+		/* Because of display:inline-block, heading and paragraph margins won't
+		   collapse anymore, which may result in doubled margins. Fixing that. */
+		h1 + *,
+		h2 + *, { margin-top: 0 !important; }
+		/* Another dirty fix for display:inline-block woes: when we have a H1
+		   followed by a H2, they may end up on the same line. Not really a fix. */
+		h1 + h2 { display: block !important; }
+		/* The top offset can be trashed if you want a full empty line before AND
+		   after the H2. The offset value here is half the line-height. */
+		h2 {
+			top: .7em;
+			margin-top: 0;
+		}
+		h1:before,
+		h2:before {
+			height: 1.4em;
+			overflow: hidden;
+			position: absolute;
+				bottom: 0; left: 0;
+		}
+		h1:before {
+			content: "================================================================"
+			"=========================================================================";
+		}
+		h2:before {
+			content: "----------------------------------------------------------------"
+			"-------------------------------------------------------------------------";
+		}
+		h3.maintitle { display: inline; }
+
+/* --- PARAGRAPHS AND INLINE CONTENT --- */
+
+	/* Paragraphs */
+	p { margin: 1.4em 0; }
+		h1 + p,
+		h2 + p  { margin-top: 0; }
+
+	/* Emphasis */
+	em { font-style: italic; }
+	strong { font-weight: bold; }
+
+	/* Options for links */
+	.rmd-a-bracket a:before, a.rmd-bracket:before,
+	.rmd-a-showurl a[href]:before, a[href].rmd-showurl:before { content: "["; }
+	.rmd-a-bracket a:after, a.rmd-bracket:after { content: "]"; }
+	.rmd-a-showurl a[href]:after, a[href].rmd-showurl:after { content: "](" attr(href) ")"; }
+	/* Print URLs after the link */
+	@media print {
+		.rmd-a-printurl a[href]:before, a[href].rmd-printurl:before { content: "["; }
+		.rmd-a-printurl a[href]:after, a[href].rmd-printurl:after { content: "](" attr(href) ")"; }
+	}
+	/* Print list of URLs at end of section -- requires a JS script */
+	@media print {
+	  .rmd-a-printref a[data-rmd-linkref]:before { content: "["; }
+	  .rmd-a-printref a[data-rmd-linkref]:after { content: "][" attr(data-rmd-linkref) "]"; }
+	  .rmd-a-printref .rmd-references {
+	    color: #555;
+	    margin-left: 3em;
+	    margin-left: 5ch;
+	  }
+	  .rmd-a-printref .rmd-references > li:before {
+	    content: "[" attr(data-rmd-linknum) "]:";
+	    margin-left: -3em;
+	    margin-left: -5ch;
+	  }
+	}
+	@media screen {
+	  .rmd-a-printref .rmd-references {display: none;}
+	}
+	/* Remove underline when we’re using Markdown-style brackets */
+	.rmd-a-bracket a, a.rmd-bracket {
+	  text-decoration: none;
+	}
+	@media print {
+	  .rmd-a-showurl a, a.rmd-showurl,
+	  .rmd-a-printurl a, a.rmd-printurl,
+	  .rmd-a-printref a[data-rmd-linkref] {
+	    text-decoration: none;
+	  }
+	}
+
+/* --- LISTS --- */
+
+	/* Common */
+	ul,
+	ol {
+		list-style: none;
+		margin: 1.4em 0;
+		padding: 0;
+	}
+
+	/* Ordered lists (with options for bullets) */
+	ul {
+		margin-left: 2.4em;
+		margin-left: 4ch;
+	}
+		ul > li:before {
+			content: "-";
+			float: left;
+			margin-left: -2.4em;
+			margin-left: -4ch;
+		}
+
+	/* Navigation & Footer */
+	ul#nav,
+	ul#footer { margin: 0; }
+		ul#nav { float: right; }
+		
+		ul#nav li,
+		ul#footer li { display: inline; }
+		ul#nav li { margin-left: 1em; }
+		
+		ul#nav > li:before,
+		ul#footer > li:before { content: none; }
+		
+	ul#footer a { color: #aaa; }
+
+	/* Ordered lists (with generated counter) */
+	ol {
+		margin-left: 2.4em;
+		margin-left: 4ch;
+		counter-reset: item;
+	}
+		ol > li { counter-increment: item; }
+
+			ol > li:before {
+				float: left;
+				margin-left: -2.4em;
+				margin-left: -4ch;
+				margin-right: 1ch;
+				content: counter(item) ".";
+			}
+
+/* --- QUOTATIONS --- */
+
+	blockquote {
+		position: relative;
+		overflow: hidden;
+		margin: 1.4em 0;
+		padding: 0 0 0 1.8em;
+		padding-left: 3ch;
+	}
+		h1 + blockquote,
+		h2 + blockquote { margin-top: 0; }
+		
+	blockquote:before {
+		position: absolute;
+		top: 0; left: 0;
+		white-space: pre;
+		content: ">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A"
+		">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A"
+		">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A"
+		">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A";
+	}
+	blockquote > *:first-child { margin-top: 0; }
+	blockquote > *:last-child { margin-bottom: 0; }
+
+
+/* --- CODE (INLINE AND BLOCKS) --- */
+
+	pre,
+	code { font-family: inherit; }
+
+	pre {
+		 margin: 1.4em 0 1.4em 2.4em;
+		 margin-left: 4ch;
+		 	-o-tab-size: 4;
+		 	-moz-tab-size: 4;
+		 tab-size: 4;
+	}
+	code:before,
+	code:after { content: "`"; }
+
+	pre code:before,
+	pre code:after { content: ""; }
+
+
+/* --- HORIZONTAL RULES --- */
+
+	hr {
+		height: 1.4em;
+		margin: 2.8em 0;
+		border: none;
+		line-height: 1.4em;
+		color: inherit;
+		text-align: center;
+	}
+		hr:before {
+			 content: "* * * *";
+			 position: relative;
+			 top: .25em;
+		}
+
+
+
+/* --- IMAGES --- */
+
+	img { max-width: 100%; }		
+		a img { border: 6px solid #DADADA; }
+			a img:hover { border: 6px solid #0088CC; }
+
+
+/* --- FORMS --- */
+
+	label { display: block; }
+	form input[type='text'] { width: 200px; }
+	form input[type='submit'] { padding: .2em .6em; }
+	form textarea { max-width: 100%; }
+
+
+/* --- TABLES --- */
+
+	table {
+		border-spacing: 0;
+		width: 100%;
+	}
+		table tr th {
+			background: #999;
+			color: white;
+			text-align: left;
+		}
+		table th, 
+		table td { padding: 4px 10px 4px 5px; }
+		tr:nth-child(even) { background-color: #E0E0E0; }
+		table tr:hover { background-color: #D1F4FF; }
+

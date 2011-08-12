@@ -17,11 +17,10 @@
 	<link rel="apple-touch-icon" href="<?php echo $cms->siteURL ?>/apple-touch-icon.png">
 	<?php endif ?>
 	
-	<link href="//fonts.googleapis.com/css?family=PT+Serif|Amaranth" rel="stylesheet" type="text/css">
-	<link href="<?php echo $cms->siteURL ?>/styles/prodoc.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo $cms->siteURL ?>/styles/remarkdown.css?v=1" rel="stylesheet" type="text/css">
 	<?php if ($cms->debug): ?><link href="<?php echo $cms->siteURL ?>/styles/debug.css" rel="stylesheet" type="text/css"><?php endif; ?>
 	
-	<script src="//ajax.cdnjs.com/ajax/libs/modernizr/1.7/modernizr-1.7.min.js" type="text/javascript"></script>
+	<script src="<?php echo $cms->siteURL ?>/scripts/libs/modernizr-1.7.min.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id='container'>
@@ -48,4 +47,4 @@
 	<![endif]-->
 	<?php if ($cms->debug) echo $cms->showDebug() ?>
 </body>
-</html><?php echo @microtime(true) ? '<!-- '. round(microtime(true) - $startTime, 4). 's -->': null; ?>
+</html>
