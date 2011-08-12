@@ -35,5 +35,28 @@ are writable.
 * Removed references to Google's CDN (Modernizr + jQuery)
 
 
+## Git-CMS as repository-based wiki (Example: Git)
+
+Gir-CMS works great as repository-based wiki. 
+
+### Requirements and Setup
+
+You need a repository for all text-files on the same server as your Gir-CMS installation. Every contributor to the wiki needs write access to this repository. If you don't have such a repository yet, have a look at [Gitosis][gitosis] or at [Gitolite][gitolite] (which seems better maintained).
+
+If you already have this repository the setup is straight forward:
+
+Add a post-recieve git-hook to the repository on the server `/path/to/repository/.git/hooks/post-receive` with the following content:
+
+<pre>
+#!/bin/sh  
+GIT_WORK_TREE=/path/to/gir-cms/files/pages git checkout -f
+</pre>
+
+After every push to the repository is "deployed" directly to the "file-database" of Gir-CMS.
+
+**Attention:** If you already have content in this folder make sure to backup it and add these files to the repository *before* deploying the first time automatically.
+
 [html5boilerplate]: http://html5boilerplate.com
 [remarkdowncss]: http://covertprestige.info/css/remarkdown/
+[gitosis]: http://eagain.net/gitweb/?p=gitosis.git
+[gitolite]: https://github.com/sitaramc/gitolite
