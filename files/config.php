@@ -20,7 +20,7 @@ class cmsConfig
 			'driver' => 'Plaintext',
 			'options' => array(
 				'database' => 'files/pages',
-				'extension' => 'txt'
+				'extension' => array('txt', 'markdown')
 				)
 			);
 	

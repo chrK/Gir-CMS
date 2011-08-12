@@ -30,7 +30,7 @@ are writable.
 
 ## Changelog (for this Fork)
 
-* Added a slightly adjusted variant of [Remarkdown CSS][remarkdowncss] by Florent Verschelde as default Style
+* Added a slightly adjusted variant of [Remarkdown CSS][remarkdowncss] by Florent Verschelde as default style
 
 * Removed references to Google's CDN (Modernizr + jQuery)
 
