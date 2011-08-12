@@ -28,4 +28,12 @@ are writable.
 5. Setup or delete the humans.txt and robots.txt in **files/extras**.
 
 
+## Changelog (for this Fork)
+
+* Added a slightly adjusted variant of [Remarkdown CSS][remarkdowncss] by Florent Verschelde as default Style
+
+* Removed references to Google's CDN (Modernizr + jQuery)
+
+
 [html5boilerplate]: http://html5boilerplate.com
+[remarkdowncss]: http://covertprestige.info/css/remarkdown/

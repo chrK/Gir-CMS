@@ -14,11 +14,7 @@
 // 	t._trackPageview();
 // });
 
-var dependencyList = {
-	jquery: 'scripts/libs/jquery-1.5.2.min.js',
-};
-
-$script('//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js', 'jquery');
+$script('/scripts/libs/jquery-1.5.2.min.js', 'jquery');
 
 $script.ready(['jquery'], function() {
 	$("a[href^=http]").each(function() {
@@ -26,12 +22,6 @@ $script.ready(['jquery'], function() {
 			$(this).click(function(){window.open(this.href);return false;});
 		}
 	});
-// }, function(depsNotFound) {
-// 			// Load local dependancys if the online ones fail.
-// 			depsNotFound.forEach(function(dep) {
-// 				console.log(dep + ' could not be loaded, loading local copy.')
-// 				$script(dependencyList[dep], dep);
-// 			});
 });
 
 window.applicationCache.addEventListener('updateready', function(e) {
